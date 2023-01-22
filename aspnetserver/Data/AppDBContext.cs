@@ -10,7 +10,7 @@ namespace aspnetserver.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=react;Username=postgres;Password=123");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=react;Username=postgres;Password=123123");
         }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

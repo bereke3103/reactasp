@@ -9,6 +9,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDBContext>();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CORSPolicy", 
+        builder =>
+    {
+        builder
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .WithOrigins("http://localhost:3000", "https://appname.azurestaticapps.net");
+});
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,6 +30,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(x => x
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .SetIsOriginAllowed(origin => true) // allow any origin
+               .AllowCredentials()); // allow credentials
 app.UseHttpsRedirection();
 
 
