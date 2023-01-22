@@ -1,30 +1,36 @@
-﻿using aspnetserver.Data;
+﻿
+using aspnetserver.Data;
+using aspnetserver.Service.PostInterface;
 using Microsoft.EntityFrameworkCore;
 
-namespace aspnetserver.Controllers
+namespace aspnetserver.Service
 {
-    internal static class PostContoller
+    public class PostService : IPost
     {
-        internal async static Task<List<Post>> GetPostAsync()
+
+        public async Task<List<PostData>> GetPostAsync()
         {
-           using(var db = new AppDBContext())
-	         {
+            using (var db = new AppDBContext())
+            {
                 return await db.Posts.ToListAsync();
-	         }
+            }
         }
 
-        internal async static Task<Post> GetPostByIdAsync(int postId)
+        public async Task<PostData> GetPostByIdAsync(int postId)
         {
             using (var db = new AppDBContext())
             {
                 return await db.Posts
                     .FirstOrDefaultAsync(post => post.PostId == postId);
             }
+
+
         }
 
-        internal async static Task<bool> CreatePostAsync(Post postToCreate)
+
+        public async Task<bool> CreatePostAsync(PostData postToCreate)
         {
-            using (var db = new AppDBContext()) 
+            using (var db = new AppDBContext())
             {
                 try
                 {
@@ -42,7 +48,7 @@ namespace aspnetserver.Controllers
         }
 
 
-        internal async static Task<bool> UpdatePostAsync(Post postToCreate)
+        public async Task<bool> UpdatePostAsync(PostData postToCreate)
         {
             using (var db = new AppDBContext())
             {
@@ -62,13 +68,13 @@ namespace aspnetserver.Controllers
         }
 
 
-        internal async static Task<bool> DeletePostAsync(int postId)
+        public async Task<bool> DeletePostAsync(int postId)
         {
             using (var db = new AppDBContext())
             {
                 try
                 {
-                    Post postToDelete = await GetPostByIdAsync(postId);
+                    PostData postToDelete = await GetPostByIdAsync(postId);
 
                     db.Remove(postToDelete);
 
@@ -81,5 +87,6 @@ namespace aspnetserver.Controllers
                 }
             }
         }
+        
     }
 }

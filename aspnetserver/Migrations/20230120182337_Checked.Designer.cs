@@ -10,7 +10,7 @@ using aspnetserver.Data;
 
 namespace aspnetserver.Migrations
 {
-    [DbContext(typeof(AppDBContext))]
+    [DbContext(typeof(PostContext))]
     [Migration("20230120182337_Checked")]
     partial class Checked
     {

@@ -9,7 +9,7 @@ using aspnetserver.Data;
 
 namespace aspnetserver.Migrations
 {
-    [DbContext(typeof(AppDBContext))]
+    [DbContext(typeof(PostContext))]
     partial class AppDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

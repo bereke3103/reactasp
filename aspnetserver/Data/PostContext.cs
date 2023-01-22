@@ -2,9 +2,9 @@
 
 namespace aspnetserver.Data
 {
-    internal sealed class AppDBContext : DbContext 
+    public class PostContext : DbContext 
     {
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<PostData> Posts { get; set; }
      
        
 
